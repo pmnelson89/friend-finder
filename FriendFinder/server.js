@@ -1,17 +1,19 @@
 // Dependencies
-const express = require("express");
-const path = require("path");
+var express = require("express");
+var path = require("path");
 
 // Create express app instance
-const app = express();
+var app = express();
 
 // Set port
-const PORT = process.env.PORT || 8080;
+var PORT = process.env.PORT || 8080;
 
-// create generic function to handle request and responses
-app.get("*", function(req, res) {
-    res.send("Working " + req.url);
-});
+app.use(express.static("aa/public"));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+require("./app/routing/apiRoutes.js")(app);
+require("./app/routing/htmlRroutes.js")(app);
 
 // Start server so that it can begin listening to client requests
 app.listen(PORT, function() {
