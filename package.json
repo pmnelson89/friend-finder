@@ -3,12 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "dependencies": {
-    "express": "^4.16.4",
-    "node": "^12.2.0",
-    "path": "^0.12.7"
-  },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./FriendFinder/server.js"
@@ -22,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/pmnelson89/friend-finder/issues"
   },
-  "homepage": "https://github.com/pmnelson89/friend-finder#readme"
+  "homepage": "https://github.com/pmnelson89/friend-finder#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "node": "^12.2.0",
+    "path": "^0.12.7"
+  }
 }
