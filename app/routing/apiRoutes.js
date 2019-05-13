@@ -28,9 +28,12 @@ module.exports = function(app) {
 
             var currentMatch = friendData[i];
             var totalDiff = 0;
+
+            console.log("current match: " + currentMatch.name);
+            console.log("bestMatch: " + bestMatch.name);
             
             // Loop through score array in the match to find the score differences
-            for (var j = 0; j < currentMatch.scores.lenth; j++) {
+            for (var j = 0; j < currentMatch.scores.length; j++) {
 
                 // Find the difference between the question scores and add them to the total difference
                 totalDiff += Math.abs(parseInt(userScores[j]) - parseInt(currentMatch.scores[j]));
@@ -42,6 +45,9 @@ module.exports = function(app) {
                 bestMatch.name = currentMatch.name;
                 bestMatch.photo = currentMatch.photo;
                 bestMatch.matchDiff = totalDiff;
+
+                console.log("best match: " + bestMatch.name);
+                console.log("current match: " + currentMatch.name);
             }
         }
 
