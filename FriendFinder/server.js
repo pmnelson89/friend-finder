@@ -1,5 +1,6 @@
 // Dependencies
 const express = require("express");
+const path = require("path");
 
 // Create express app instance
 const app = express();
@@ -7,6 +8,8 @@ const app = express();
 // Set port
 const PORT = process.env.PORT || 8080;
 
+// Middleware
+app.use(express.static(path.join(__dirname, "app/public")));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 

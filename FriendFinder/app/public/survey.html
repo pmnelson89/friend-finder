@@ -160,11 +160,9 @@
     $("#submit").on("click", function() {
         event.preventDefault();
 
-        if (($("#name").val().trim() == "") || ($("#photo").val().trim())) {
+        // $("#results-modal").modal("toggle");
 
-            alert("Please complete all fields before submitting!");
-
-        } else {
+        if (($("#name").val().trim() !== "") && ($("#photo").val().trim() !== "")) {
 
             // create object from input
             var userData = {
@@ -185,7 +183,7 @@
             };
 
             // post data to friends.js
-            $.post("/api/friends.js", userData, function(data) {
+            $.post("/api/friends", userData, function(data) {
 
                 //display best match in modal
                 $("#match-name").text(data.name);
@@ -196,6 +194,12 @@
                 $("#name").val("");
                 $("#photo").val("");
             });
+
+        } else {
+
+
+            alert("Please complete all fields before submitting!");
+            
         };
     });
 

@@ -1,5 +1,5 @@
 // Pull in friends data
-const friendData = require("../data/friends.js");
+const friendData = require("../data/friends");
 
 // Export routes
 module.exports = function(app) {
@@ -22,7 +22,6 @@ module.exports = function(app) {
             photo: "",
             matchDiff: 1000
         };
-
 
         // Loop through friend data
         for (var i = 0; i < friendData.length; i++) {
