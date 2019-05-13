@@ -1,5 +1,5 @@
 // Pull in friends data
-var friendData = require("../data/friends.js");
+const friendData = require("../data/friends.js");
 
 // Export routes
 module.exports = function(app) {
@@ -11,42 +11,44 @@ module.exports = function(app) {
 
     // Add new friend
     app.post("/api/friends", function(req, res) {
-        
-        // Save user input from survey
-        var userData = req.body;
 
-        // Find best match
-        var bestMatch = {};
+        // Set user input variables
+        var userInput = req.body;
+        var userScores = userInput.scores;
+        
+        // Create best match object
+        var bestMatch = {
+            name: "",
+            photo: "",
+            matchDiff: 1000
+        };
+
 
         // Loop through friend data
         for (var i = 0; i < friendData.length; i++) {
 
-            // Find values from survey
-            userData.scores[i] = parseInt(userData.scores[i]);
+            var currentMatch = friendData[i];
+            var totalDiff = 0;
+            
+            // Loop through score array in the match to find the score differences
+            for (var j = 0; j < currentMatch.scores.lenth; j++) {
 
-             // Compare scores
-            var matchIndex = 0;
-            var matchDiff = 40;
-            var scoreDiff = 0;
-
-            for (var j = 0; j < friendData[i].scores.length; j++) {
-                scoreDiff += Math.abs(friendData[i].scores[j] - userData.scores[j]);
+                // Find the difference between the question scores and add them to the total difference
+                totalDiff += Math.abs(parseInt(userScores[j]) - parseInt(currentMatch.scores[j]));
             }
 
-            // if score difference is less than current best match, save as new best match
-            if (scoreDiff < matchDiff) {
-                matchIndex = i;
-                matchDiff = scoreDiff;
+            // Compare the current match to the existing best match and replace if better
+            if (totalDiff <= bestMatch.matchDiff) {
+
+                bestMatch.name = currentMatch.name;
+                bestMatch.photo = currentMatch.photo;
+                bestMatch.matchDiff = totalDiff;
             }
         }
 
-        // Set new best match
-        bestMatch = friendData[matchIndex];
-
-        // Add new freind to array
-        friendData.push(userData);
-
-        // return best match
+        // Add new data to the friendData array and return the best match
+        friendData.push(userInput);
         res.json(bestMatch);
-    });
+
+    }); 
 };

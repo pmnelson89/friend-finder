@@ -156,58 +156,48 @@
     
     <script type="text/javascript">
 
-        // Save form input
-        $("#submit").on("click", function() {
+    // Form inpust
+    $("#submit").on("click", function() {
+        event.preventDefault();
 
-            event.preventDefault();
+        if (($("#name").val().trim() == "") || ($("#photo").val().trim())) {
 
-            function validate() {
-                let valid = true;
-                $(".form-control").each(function() {
-                    if ($(this).val() === "") {
-                        valid = false;
-                    }
-                });
-                $(".chosen-select").each(function() {
-                    if ($(this).val() === "") {
-                        valid = false;
-                    }
-                });
-                return valid;
-            }
+            alert("Please complete all fields before submitting!");
 
-            if (validate()) {
+        } else {
 
-                var friendData = {
-                    name: $("#name").val(),
-                    photo: $("#photo").val(),
-                    scores: [
-                        $("#q1").val(),
-                        $("#q2").val(),
-                        $("#q3").val(),
-                        $("#q4").val(),
-                        $("#q5").val(),
-                        $("#q6").val(),
-                        $("#q7").val(),
-                        $("#q8").val(),
-                        $("#q9").val(),
-                        $("#q10").val()
-                    ]
-                };
+            // create object from input
+            var userData = {
+                name: $("#name").val(),
+                photo: $("#photo").val(),
+                scores: [             
+                    $("#q1").val(),
+                    $("#q2").val(),
+                    $("#q3").val(),
+                    $("#q4").val(),
+                    $("#q5").val(),
+                    $("#q6").val(),
+                    $("#q7").val(),
+                    $("#q8").val(),
+                    $("#q9").val(),
+                    $("#q10").val()
+                ]
+            };
 
-                $.post("/api/friends", friendData, function(data) {
-                    $("#match-name").text(data.name);
-                    $("#match-img").attr("src", data.photo);
-                    $("#results-modal").modal("toggle");
-                });
+            // post data to friends.js
+            $.post("/api/friends.js", userData, function(data) {
 
-            } else {
+                //display best match in modal
+                $("#match-name").text(data.name);
+                $("#match-img").attr("src", data.photo);
+                $("#results-modal").modal("toggle");
 
-                alert("Please fill out all fields before submitting!");
-
-            }
-
-        });
+                //clear form
+                $("#name").val("");
+                $("#photo").val("");
+            });
+        };
+    });
 
     </script>
 </body>
