@@ -8,16 +8,28 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <style>
+        .jumbotron {
+            margin: 10px;
+            background-image: url('./assets/friends.jpg');
+            background-size: cover;
+            float: center;
+        }
+        .jumbo-text {
+            color: white;
+            text-shadow: 1px 1px black;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <div class="jumbotron jumbotron-fluid" style="background-image:url('./assets/friends.jpg');background-size:cover;">
-            <h1 style="color:white;">Friend Finder</h1>
+        <div class="jumbotron jumbotron-fluid">
+            <h1 class="jumbo-text" style="color:white;">Friend Finder</h1>
             <hr>
-            <h2 style="color:white;">Answer a few basic questions.</h2>
-            <h2 style="color:white;">Then find the friend with the greatest compatibility!</h2>
+            <h2 class="jumbo-text">Answer a few basic questions.</h2>
+            <h2 class="jumbo-text">Then find the friend with the greatest compatibility!</h2>
             <br>
-                <a href="/survey">
+                <a href="./survey.html">
                     <button type="button" class="btn btn-lg btn-primary">
                         <h4>Go to Survey</h4>
                     </button>
