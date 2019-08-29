@@ -2,7 +2,7 @@
 
 This application uses Node.js and Express.js to find compatible friend matches based on the user survey responses.
 
-#### Technologies
+#### Technology
 * Javascript
 * jQuery
 * Node.js
